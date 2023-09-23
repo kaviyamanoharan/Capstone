@@ -1,6 +1,6 @@
-project@DESKTOP-EBUJP1M:~$ su - hadoop
+project@LAPTOP-BSKHC7CG:~$ su - hadoop
 Password:
-hadoop@DESKTOP-EBUJP1M:~$ sqoop import --connect jdbc:mysql://localhost/capstone --username root -P --table Globaldata --target-dir /Global -m 1
+hadoop@LAPTOP-BSKHC7CG:~$ sqoop import --connect jdbc:mysql://localhost/capstone --username root -P --table Globaldata --target-dir /Global -m 1
 Warning: /home/hadoop/sqoop-1.4.7/../hbase does not exist! HBase imports will fail.
 Please set $HBASE_HOME to the root of your HBase installation.
 Warning: /home/hadoop/sqoop-1.4.7/../hcatalog does not exist! HCatalog jobs will fail.
@@ -99,7 +99,7 @@ Found 2 items
 -rw-r--r--   1 hadoop supergroup          0 2023-09-22 22:25 /Global/_SUCCESS
 -rw-r--r--   1 hadoop supergroup          0 2023-09-22 22:25 /Global/part-m-00000
 
-hadoop@DESKTOP-EBUJP1M:~$ hadoop fs -cat /Global/part-m-00000
+hadoop@LAPTOP-BSKHC7CG:~$ hadoop fs -cat /Global/part-m-00000
 User_id,CountryName,CountryCode,IndicatorName,IndicatorCode,Year,Value
 1,Arab World,ARB,Adolescent fertility rate (births per 1000 women ages 15-19),SP.ADO.TFRT,1960,133.56
 2,Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,1960,87.80
