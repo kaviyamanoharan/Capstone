@@ -201,7 +201,6 @@ mal from global").show()
 +--------------------+-----------+--------------------+-----------------+----+-------+
 |             Country|       Code|           Indicator|             Code|Date|decimal|
 +--------------------+-----------+--------------------+-----------------+----+-------+
-|         CountryName|CountryCode|       IndicatorName|    IndicatorCode|null|   null|
 |          Arab World|        ARB|Adolescent fertil...|      SP.ADO.TFRT|1960|    134|
 |          Arab World|        ARB|Age dependency ra...|      SP.POP.DPND|1960|     88|
 |          Arab World|        ARB|Age dependency ra...|   SP.POP.DPND.OL|1960|      7|
@@ -225,3 +224,12 @@ mal from global").show()
 only showing top 20 rows
 
 changes: Unit = ()
+
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+Changes.write
+.mode("overwrite") // Choose the appropriate mode
+  .saveAsTable("Sampledata")
+
+// Exiting paste mode, now interpreting.
