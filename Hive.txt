@@ -24,8 +24,8 @@ hive> create table globalmodify_csv (User_id int,CountryName String,CountryCode 
 OK
 Time taken: 0.276 seconds
 
-hive> load data inpath '/Globaldata/part-m-00000' INTO TABLE globaldata;
-Loading data to table default.globaldata
+hive> load data inpath '/Globaldata/part-m-00000' INTO TABLE globalmodify_csv;
+Loading data to table default.Globaldata
 OK
 Time taken: 1.602 seconds
 
