@@ -1,7 +1,7 @@
-hadoop@DESKTOP-EBUJP1M:~$ sudo service mysql start
+hadoop@LAPTOP-BSKHC7CG:~$ sudo service mysql start
 [sudo] password for hadoop:
  * Starting MySQL database server mysqld                                                                                                             [ OK ]
-hadoop@DESKTOP-EBUJP1M:~$ mysql -u root -p
+hadoop@LAPTOP-BSKHC7CG:~$ mysql -u root -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 55
