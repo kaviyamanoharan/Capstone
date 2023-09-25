@@ -257,10 +257,10 @@ scala>val avg=spark.sql("SELECT CountryName,IndicatorName,Year, AVG(Value) AS Av
 |Central Europe an...|Agricultural land...|1971|    64.16857697|
 +--------------------+--------------------+----+---------------+
 
-scala> val changes=spark.sql("SELECT CountryName AS Country,CountryCode AS Code,IndicatorName AS Indicator,IndicatorCode AS Code,Year AS Date, Value AS deci
+scala> val changes=spark.sql("SELECT CountryName AS Country,CountryCode AS C-Code,IndicatorName AS Indicator,IndicatorCode AS I-Code,Year AS Date, Value AS deci
 mal from global").show()
 +--------------------+-----------+--------------------+-----------------+----+-------+
-|             Country|       Code|           Indicator|             Code|Date|decimal|
+|             Country|     C-Code|           Indicator|           I-Code|Date|decimal|
 +--------------------+-----------+--------------------+-----------------+----+-------+
 |          Arab World|        ARB|Adolescent fertil...|      SP.ADO.TFRT|1960|    134|
 |          Arab World|        ARB|Age dependency ra...|      SP.POP.DPND|1960|     88|
