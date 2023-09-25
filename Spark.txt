@@ -22,34 +22,38 @@ Type :help for more information.
 
 scala> df.createTempView("global")
 
-scala> val nulvalue=spark.sql("SELECT * FROM global WHERE Year IS NULL OR Value IS NULL ").show()
-+-------+--------------------+-----------+--------------------+--------------+----+-----+
-|user_id|         countryname|countrycode|       indicatorname| indicatorcode|year|value|
-+-------+--------------------+-----------+--------------------+--------------+----+-----+
-|   null|         CountryName|CountryCode|       IndicatorName| IndicatorCode|null| null|
-|     20|East Asia & Pacif...|        EAS|Agriculture value...|NV.AGR.TOTL.KD|1960| null|
-|   1015|East Asia & Pacif...|        EAS|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1016|East Asia & Pacif...|        EAS|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1020|East Asia & Pacif...|        EAP|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1028|           Euro area|        EMU|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1029|           Euro area|        EMU|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1030|Europe & Central ...|        ECS|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1031|Europe & Central ...|        ECS|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1043|      European Union|        EUU|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1044|      European Union|        EUU|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1050|Heavily indebted ...|        HPC|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1056|         High income|        HIC|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1057|         High income|        HIC|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1066|   High income: OECD|        OEC|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1067|   High income: OECD|        OEC|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1073|Latin America & C...|        LCN|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1074|Latin America & C...|        LCN|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-|   1078|Latin America & C...|        LAC|Adjusted net nati...|NY.ADJ.NNTY.KD|1970| null|
-|   1079|Latin America & C...|        LAC|Adjusted net nati...|NY.ADJ.NNTY.CD|1970| null|
-+-------+--------------------+-----------+--------------------+--------------+----+-----+
-only showing top 20 rows
-
+scala> val nulvalue=spark.sql("SELECT * FROM global WHERE Value IS NULL  ").show()
++-----------+-----------+-------------+-------------+----+-----+
+|CountryName|CountryCode|IndicatorName|IndicatorCode|Year|Value|
++-----------+-----------+-------------+-------------+----+-----+
++-----------+-----------+-------------+-------------+----+-----+
 nulvalue: Unit = ()
+
+scala>val notnulvalue=spark.sql("SELECT * FROM global WHERE Value IS not NULL").show()
+|         CountryName|CountryCode|       IndicatorName|    IndicatorCode|Year|      Value|
++--------------------+-----------+--------------------+-----------------+----+-----------+
+|          Arab World|        ARB|Adolescent fertil...|      SP.ADO.TFRT|1960|133.5609074|
+|          Arab World|        ARB|Age dependency ra...|      SP.POP.DPND|1960|87.79760115|
+|          Arab World|        ARB|Age dependency ra...|   SP.POP.DPND.OL|1960|6.634579192|
+|          Arab World|        ARB|Age dependency ra...|   SP.POP.DPND.YG|1960|81.02332951|
+|          Arab World|        ARB|Arms exports (SIP...|   MS.MIL.XPRT.KD|1960|    3000000|
+|Caribbean small s...|        CSS|Adolescent fertil...|      SP.ADO.TFRT|1960|162.8712116|
+|Caribbean small s...|        CSS|Age dependency ra...|      SP.POP.DPND|1960|90.54256071|
+|Caribbean small s...|        CSS|Age dependency ra...|   SP.POP.DPND.OL|1960| 7.87499866|
+|Caribbean small s...|        CSS|Age dependency ra...|   SP.POP.DPND.YG|1960|82.28754578|
+|Caribbean small s...|        CSS|Birth rate, crude...|   SP.DYN.CBRT.IN|1960|40.01700054|
+|Central Europe an...|        CEB|Adolescent fertil...|      SP.ADO.TFRT|1960|46.71675161|
+|Central Europe an...|        CEB|Age dependency ra...|      SP.POP.DPND|1960|57.51102276|
+|Central Europe an...|        CEB|Age dependency ra...|   SP.POP.DPND.OL|1960|11.33851627|
+|Central Europe an...|        CEB|Age dependency ra...|   SP.POP.DPND.YG|1960|45.96986684|
+|Central Europe an...|        CEB|Alternative and n...|EG.USE.COMM.CL.ZS|1960|0.100326004|
+|East Asia & Pacif...|        EAS|Adolescent fertil...|      SP.ADO.TFRT|1960|66.01597448|
+|East Asia & Pacif...|        EAS|Age dependency ra...|      SP.POP.DPND|1960|76.43392368|
+|East Asia & Pacif...|        EAS|Age dependency ra...|   SP.POP.DPND.OL|1960|6.828242384|
+|East Asia & Pacif...|        EAS|Age dependency ra...|   SP.POP.DPND.YG|1960|69.23032559|
+|East Asia & Pacif...|        EAS|Agriculture, valu...|   NV.AGR.TOTL.KD|1960|   1.24E+11|
++--------------------+-----------+--------------------+-----------------+----+-----------+
+only showing top 20 rows
 
 scala> val ordering=spark.sql("select * from global order by value desc").show()
 +-------+--------------------+-----------+--------------------+--------------+----+----------+
@@ -156,6 +160,35 @@ only showing top 20 rows
 
 DistinctCountry: Unit = ()
 
+scala> val g=spark.sql("select distinct(IndicatorName) as DistinctIndicatorName from global").show()
++---------------------+
+|DistinctIndicatorName|
++---------------------+
+| Adjusted net nati...|
+| Adjusted savings:...|
+| Arms imports (SIP...|
+| Adjusted net nati...|
+| Agriculture, valu...|
+| Adjusted net enro...|
+| Adjusted savings:...|
+| Alternative and n...|
+| Agricultural land...|
+| Adjusted net enro...|
+| Adjusted net nati...|
+| Adjusted savings:...|
+| Adjusted savings:...|
+| Adjusted net nati...|
+| Agricultural land...|
+| Age dependency ra...|
+| Birth rate, crude...|
+| Adolescent fertil...|
+| Age dependency ra...|
+| Agriculture, valu...|
++---------------------+
+only showing top 20 rows
+
+DistinctIndicatorName: Unit = ()
+
 scala> val LatestYear=spark.sql("select max(year) as Latestyear ,min(year) as EarliestYear from global").show()
 +----------+------------+
 |Latestyear|EarliestYear|
@@ -167,34 +200,62 @@ LatestYear: Unit = ()
 
 
 
-scala> val sumofindicator = spark.sql( "SELECT CountryName, SUM(Value) FROM global WHERE IndicatorName = 'Age dependency ratio, old (% of working-age popula
-tion)' OR IndicatorName = 'Adolescent fertility rate (births per 1000 women ages 15-19)' GROUP BY CountryName").show()
-+--------------------+----------+
-|         CountryName|sum(Value)|
-+--------------------+----------+
-| Lower middle income|      1160|
-| Low & middle income|       967|
-|Heavily indebted ...|      1513|
-|Latin America & C...|      1079|
-|Least developed c...|      1560|
-|East Asia & Pacif...|       591|
-|Caribbean small s...|      1564|
-|          Arab World|      1327|
-|East Asia & Pacif...|       667|
-|   High income: OECD|       425|
-|      European Union|       404|
-|         High income|       431|
-|Central Europe an...|       884|
-|Latin America & C...|      1040|
-|Fragile and confl...|      1261|
-|          Low income|      1354|
-|High income: nonOECD|       463|
-|Europe & Central ...|       423|
-|Europe & Central ...|       615|
-|           Euro area|       307|
-+--------------------+----------+
+scala> val sumofindicator = spark.sql( "SELECT CountryName,Year, SUM(Value) FROM global WHERE IndicatorName = 'Age dependency ratio, old (% of working-age popula
+tion)' OR IndicatorName = 'Adolescent fertility rate (births per 1000 women ages 15-19)' GROUP BY CountryName,Year").show()
++--------------------+----+-----------+
+|         CountryName|Year| sum(Value)|
++--------------------+----+-----------+
+|Caribbean small s...|1963|8.509449768|
+|          Arab World|1967|7.105108558|
+|Central Europe an...|1972| 15.0781348|
+|      European Union|1967|17.22297939|
+|Europe & Central ...|1962|10.36504531|
+|          Low income|1969|5.359330244|
+|Caribbean small s...|1969|9.568862066|
+|Europe & Central ...|1964|10.70874654|
+| Low & middle income|1969| 6.73323464|
+|Latin America & C...|1963|7.066208887|
+|   High income: OECD|1968|15.55332366|
+|Heavily indebted ...|1961|5.336146224|
+|         High income|1962|13.59952161|
+|East Asia & Pacif...|1967|6.443587946|
+|Europe & Central ...|1961|13.48568563|
+|East Asia & Pacif...|1966|6.762926299|
+|Least developed c...|1969|5.442695044|
+|Europe & Central ...|1967|14.88121208|
+|East Asia & Pacif...|1969|6.587225052|
+|Heavily indebted ...|1969|5.424844662|
++--------------------+----+-----------+
+only showing top 20 rows
+
 
 sumofindicator: Unit = ()
+
+scala>val avg=spark.sql("SELECT CountryName,IndicatorName,Year, AVG(Value) AS AverageValue FROM global GROUP BY CountryName, IndicatorName,Year").show()
++--------------------+--------------------+----+---------------+
+|         CountryName|       IndicatorName|Year|   AverageValue|
++--------------------+--------------------+----+---------------+
+|High income: nonOECD|Age dependency ra...|1962|    9.617704618|
+| Lower middle income|Age dependency ra...|1962|    6.431413487|
+| Lower middle income|Adolescent fertil...|1965|    116.6657936|
+|Europe & Central ...|Agricultural land...|1966|      2517511.0|
+|East Asia & Pacif...|Adjusted net nati...|1973|    140.2172615|
+|         High income|Adjusted net enro...|1978|    92.18804169|
+|Heavily indebted ...|Adjusted net nati...|1979|8.9364356429E10|
+|Latin America & C...|Adjusted net nati...|1979|    3.796914979|
+| Low & middle income|Adjusted net enro...|1979|    65.28877258|
+|Central Europe an...|Age dependency ra...|1960|    11.33851627|
+|Caribbean small s...|Age dependency ra...|1964|    96.07470775|
+|   High income: OECD|Adjusted net enro...|1970|    91.82644653|
+|Caribbean small s...|Adjusted net nati...|1971|  3.400564033E9|
+|Caribbean small s...|Adjusted net enro...|1973|    93.30558777|
+|      European Union|Adjusted net nati...|1973|    5.241473632|
+| Low & middle income|Adjusted net nati...|1975|    283.4106015|
+| Low & middle income|Adjusted net enro...|1976|    81.32801056|
+|Latin America & C...|Adjusted net enro...|1980|    89.89476776|
+|          Low income|Age dependency ra...|1966|    5.253721102|
+|Central Europe an...|Agricultural land...|1971|    64.16857697|
++--------------------+--------------------+----+---------------+
 
 scala> val changes=spark.sql("SELECT CountryName AS Country,CountryCode AS Code,IndicatorName AS Indicator,IndicatorCode AS Code,Year AS Date, Value AS deci
 mal from global").show()
@@ -224,6 +285,40 @@ mal from global").show()
 only showing top 20 rows
 
 changes: Unit = ()
+
+scala> val indi1=spark.sql("select distinct(IndicatorName),value from global order by value desc ").show()
+
+--------------------+-----------+
+|       IndicatorName|      value|
++--------------------+-----------+
+|Adjusted net nati...|997.0067115|
+|Adolescent fertil...| 99.6378122|
+|Age dependency ra...|99.45914382|
+|Adolescent fertil...| 98.8387067|
+|Age dependency ra...|98.31860748|
+|Adolescent fertil...|98.29525662|
+|Adjusted net nati...|96546833671|
+|Age dependency ra...|96.99845652|
+|Adolescent fertil...|96.86445626|
+|Adjusted net enro...|96.62023926|
+|Adjusted net enro...|96.61009216|
+|Adjusted net enro...|96.60095215|
+|Adjusted net enro...|  96.596138|
+|Adjusted net enro...|96.56304169|
+|Adjusted net enro...|96.55341339|
+|Adjusted net enro...|96.53437042|
+|Adjusted net enro...|96.50731659|
+|Adjusted net enro...|96.47096252|
+|Adjusted net enro...|96.42719269|
+|Adjusted net enro...|96.41689301|
++--------------------+-----------+
+
+only showing top 20 rows
+
+value: Unit = ()
+
+
+
 
 scala> :paste
 // Entering paste mode (ctrl-D to finish)
