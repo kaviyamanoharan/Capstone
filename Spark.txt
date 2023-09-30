@@ -291,7 +291,7 @@ scala> val indi1=spark.sql("select distinct(IndicatorName),value from global ord
 --------------------+-----------+
 |       IndicatorName|      value|
 +--------------------+-----------+
-|Adjusted net nati...|997.0067115|
+|Adjusted net enro...|997.0067115|
 |Adolescent fertil...| 99.6378122|
 |Age dependency ra...|99.45914382|
 |Adolescent fertil...| 98.8387067|
